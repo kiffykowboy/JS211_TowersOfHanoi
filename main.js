@@ -15,9 +15,8 @@ const rl = readline.createInterface({
       // * Each number represents the largest to smallest tokens: 
         // * 4 is the largest, 
         // * 1 is the smallest
-
 let stacks = {
-  a: [4, 3, 2, 1],
+  a: [4,3,2,1],
   b: [],
   c: []
 };
@@ -30,26 +29,53 @@ const printStacks = () => {
 }
 
 // Next, what do you think this function should do?
-const movePiece = () => {
-  // Your code here
+// const movePiece = () => {
+//   // Your code here
 
-}
+// }
 
 // Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
-const isLegal = () => {
-  // Your code here
+const isLegal = (startStack, endStack) => {
+  // Move is legal if last element of startStack array is smaller than last element of endStack array
+  console.log('here')
 
+  let startStackArray = stacks[startStack];
+  let endStackArray = stacks[endStack];
+  let lastStartStackElement = startStackArray[startStackArray.length - 1];
+  let lastEndStackElement = endStackArray[endStackArray.length - 1];
+
+  console.log(lastStartStackElement)
+  console.log(lastEndStackElement)
+
+  console.log(lastStartStackElement > lastEndStackElement )
+
+  if(lastStartStackElement < lastEndStackElement){
+    return true;
+  }
+  return false;
 }
 
 // What is a win in Towers of Hanoi? When should this function run?
 const checkForWin = () => {
-  // Your code here
-
+  // Iterate over stacks.b and compare each element to the same element indexed in the array [4,3,2,1]
+  const startArray = [4,3,2,1];
+  for (let i = 0; i <= stacks.b.length-1; i++){
+    if(stacks.b[i] !== startArray[i]){
+      return false;
+    };
+}
+return true;
 }
 
 // When is this function called? What should it do with its argument?
 const towersOfHanoi = (startStack, endStack) => {
-  // Your code here
+  // Take input and test isLegal
+  // If legal then move from startStack to endStack
+  // if(isLegal(startStack, endStack)){
+    if(isLegal(stacks[endStack].push(stacks[startStack].pop()))
+  // }
+  // call check for win
+
 
 }
 
