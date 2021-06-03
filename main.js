@@ -29,27 +29,23 @@ const printStacks = () => {
 }
 
 // Next, what do you think this function should do?
-// const movePiece = () => {
-//   // Your code here
+const movePiece = (startStack, endStack) => {
+  // Your code here
+  stacks[endStack].push(stacks[startStack].pop())
 
-// }
+}
 
 // Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
 const isLegal = (startStack, endStack) => {
   // Move is legal if last element of startStack array is smaller than last element of endStack array
-  console.log('here')
+  let startingStack = stacks[startStack]
+  let endingStack = stacks[endStack]
 
-  let startStackArray = stacks[startStack];
-  let endStackArray = stacks[endStack];
-  let lastStartStackElement = startStackArray[startStackArray.length - 1];
-  let lastEndStackElement = endStackArray[endStackArray.length - 1];
+  let lastStartStackElement = startingStack[startingStack.length -1]
+  let lastEndStackElement = endingStack[endingStack.length -1]
 
-  console.log(lastStartStackElement)
-  console.log(lastEndStackElement)
 
-  console.log(lastStartStackElement > lastEndStackElement )
-
-  if(lastStartStackElement < lastEndStackElement){
+  if(lastStartStackElement < lastEndStackElement || lastEndStackElement === undefined){
     return true;
   }
   return false;
@@ -58,21 +54,25 @@ const isLegal = (startStack, endStack) => {
 // What is a win in Towers of Hanoi? When should this function run?
 const checkForWin = () => {
   // Iterate over stacks.b and compare each element to the same element indexed in the array [4,3,2,1]
-  const startArray = [4,3,2,1];
-  for (let i = 0; i <= stacks.b.length-1; i++){
-    if(stacks.b[i] !== startArray[i]){
-      return false;
-    };
-}
-return true;
-}
+  
+  if (stacks.b.length === 4){
+    return true;
+  }else{
+    return false;
+  }
+};
+
 
 // When is this function called? What should it do with its argument?
 const towersOfHanoi = (startStack, endStack) => {
   // Take input and test isLegal
   // If legal then move from startStack to endStack
   // if(isLegal(startStack, endStack)){
-    if(isLegal(stacks[endStack].push(stacks[startStack].pop()))
+  if(isLegal(startStack, endStack)){
+    movePiece(startStack, endStack)
+  } else {
+    console.log('NOPE GO HOME')
+  }
   // }
   // call check for win
 
